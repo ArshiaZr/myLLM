@@ -47,7 +47,7 @@ To get started with myLLM, you need to have Python 3.8 or higher installed. Foll
 
    ```sh
    python -m venv cuda
-   source cuda/bin/activate  # On Windows, use `venv\Scripts\activate`
+   source cuda/bin/activate  # On Windows, use `cuda\Scripts\activate`
    ```
 
 3. Install the required packages:
