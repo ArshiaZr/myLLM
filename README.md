@@ -39,15 +39,15 @@ To get started with myLLM, you need to have Python 3.8 or higher installed. Foll
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/yourusername/myLLM.git
+   git clone https://github.com/ArshiaZr/myLLM.git
    cd myLLM
    ```
 
 2. Create a virtual environment and activate it:
 
    ```sh
-   python -m venv venv
-   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   python -m venv cuda
+   source cuda/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```
 
 3. Install the required packages:
@@ -70,15 +70,16 @@ To train and test your LLM, follow these steps:
 2. **Model Training**: Train the transformer model.
 
    ```python
-   from model import TransformerModel
-   model = TransformerModel()
-   model.train('path_to_tokenized_data')
+   from models.GPT import GPTLanguageModel
+   model = GPTLanguageModel(vocab_size=vocab_size, device=device)
+   model._train(epochs=200, learning_rate=3e-4, eval_iters=100)
    ```
 
 3. **Inference**: Use the trained model for inference.
    ```python
-   model.load('path_to_trained_model')
-   result = model.infer('your_input_text')
+   from utils.helpers import load_model
+   model = load_model('path_to_trained_model')
+   result = model.generate('your_encoded_input_text')
    print(result)
    ```
 
@@ -94,9 +95,6 @@ myLLM/
 │   └── ...
 ├── tokenization/
 │   ├── tokenizer.py
-│   └── ...
-├── training/
-│   ├── train.py
 │   └── ...
 ├── utils/
 │   ├── helpers.py
